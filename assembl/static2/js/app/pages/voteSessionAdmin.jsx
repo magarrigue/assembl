@@ -12,6 +12,7 @@ import PageForm from '../components/administration/voteSession/pageForm';
 import { type VoteChoice } from '../components/administration/voteSession/gaugeForm';
 import ModulesSection from '../components/administration/voteSession/modulesSection';
 import VoteProposalsSection from '../components/administration/voteSession/voteProposalsSection';
+import ExportSection from '../components/administration/exportSection';
 import Navbar from '../components/administration/navbar';
 import SaveButton, { getMutationsPromises, runSerial } from '../components/administration/saveButton';
 import updateVoteSessionMutation from '../graphql/mutations/updateVoteSession.graphql';
@@ -181,7 +182,9 @@ type VoteSessionAdminProps = {
   createProposal: Function,
   updateProposal: Function,
   deleteProposal: Function,
-  setValidationErrors: (string, ValidationErrors) => Function
+  setValidationErrors: (string, ValidationErrors) => Function,
+  voteSessionId: string,
+  debateId: string
 };
 
 type VoteSessionAdminState = {
@@ -469,8 +472,11 @@ class VoteSessionAdmin extends React.Component<void, VoteSessionAdminProps, Vote
       voteProposalsHaveChanged,
       refetchVoteSession,
       section,
-      voteSessionPage
+      voteSessionPage,
+      debateId,
+      voteSessionId
     } = this.props;
+    const exportLink = get('exportVoteSessionData', { debateId: debateId, voteSessionId: voteSessionId });
     const saveDisabled = !moduleTemplatesHaveChanged && !voteProposalsHaveChanged && !voteSessionPage.get('_hasChanged');
     const currentStep = parseInt(section, 10);
     return (
@@ -479,13 +485,14 @@ class VoteSessionAdmin extends React.Component<void, VoteSessionAdminProps, Vote
         {section === '1' && <PageForm editLocale={editLocale} />}
         {section === '2' && <ModulesSection />}
         {section === '3' && <VoteProposalsSection refetchVoteSession={refetchVoteSession} />}
-        {!isNaN(currentStep) && <Navbar currentStep={currentStep} totalSteps={3} phaseIdentifier="voteSession" />}
+        {section === '4' && <ExportSection exportLink={exportLink} />}
+        {!isNaN(currentStep) && <Navbar currentStep={currentStep} totalSteps={4} phaseIdentifier="voteSession" />}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ admin: { editLocale, voteSession }, debate, i18n }) => {
+const mapStateToProps = ({ admin: { editLocale, voteSession }, debate, i18n, context }) => {
   const {
     modulesById,
     modulesInOrder,
@@ -493,7 +500,8 @@ const mapStateToProps = ({ admin: { editLocale, voteSession }, debate, i18n }) =
     gaugeChoicesById,
     moduleTemplatesHaveChanged,
     voteProposalsHaveChanged,
-    voteProposalsById
+    voteProposalsById,
+    page
   } = voteSession;
 
   type Module = Map<string, any>;
@@ -537,6 +545,8 @@ const mapStateToProps = ({ admin: { editLocale, voteSession }, debate, i18n }) =
     timeline: debate.debateData.timeline,
     voteModules: voteModules,
     voteSessionPage: voteSession.page,
+    debateId: context.debateId,
+    voteSessionId: page.toJS().id,
     voteProposals: voteProposalsById
       .map((proposal) => {
         const pModules = proposal
