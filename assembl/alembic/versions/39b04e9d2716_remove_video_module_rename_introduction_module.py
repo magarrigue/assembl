@@ -36,8 +36,8 @@ def upgrade(pyramid_env):
         lpmt = db.query(m.LandingPageModuleType).filter(m.LandingPageModuleType.identifier == u"INTRODUCTION").first()
         if lpmt:
             ls = lpmt.title
-            ls.add_value(u"Text & Multi-Media", "en")
-            ls.add_value(u"Texte & Multi-Médias", "fr")
+            ls.add_value(u"Text & Multi-media", "en")
+            ls.add_value(u"Texte & Multi-média", "fr")
         db.flush()
 
 
