@@ -6,7 +6,7 @@ This method is a temporary method in order to quickly update the preprod server 
 Preprod server has an assembl instance running on different containers. The whole instance is run via a .yml file run with docker-compose
 
 
-Note: 6f41608ee826 is the identity of the container running the image assembl:develop
+Note: To get the identity of the container running the image assembl:develop run ``docker ps | grep assembl``
 
 Local machine::
 
@@ -56,9 +56,7 @@ Nginx container::
 
 	cd /opt/assembl_static
 	./update.sh
-	rm - rf static_backup
-	mv static static_backup2
-	mv static2 static_backup2
+	rm -rf static_backup
 	exit
 
 You are now outside the container and on the preprod server again.
