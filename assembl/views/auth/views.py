@@ -38,7 +38,8 @@ from assembl.models import (
     AgentProfile, User, Username, Role, LocalUserRole, Preferences,
     AbstractAgentAccount, Discussion, AgentStatusInDiscussion)
 from assembl.auth import (
-    P_READ, R_PARTICIPANT, P_SELF_REGISTER, P_SELF_REGISTER_REQUEST)
+    P_READ, R_PARTICIPANT, P_SELF_REGISTER, P_SELF_REGISTER_REQUEST,
+    P_OVERRIDE_SOCIAL_AUTOLOGIN)
 from assembl.auth.password import (
     verify_email_token, verify_password_change_token,
     password_change_token, Validity, get_data_token_time)
@@ -136,6 +137,9 @@ def maybe_contextual_route(request, route_name, **args):
             discussion_slug=discussion_slug, **args)
 
 
+SOCIAL_AUTH_FAILED_MSG = "social_auth_failed"
+
+
 def get_social_autologin(request, discussion=None, next_view=None):
     """Look for a mandatory social login"""
     discussion = discussion or discussion_from_request(request)
@@ -147,6 +151,10 @@ def get_social_autologin(request, discussion=None, next_view=None):
     landing_page = preferences['landing_page']
     if not auto_login_backend:
         return None
+    if SOCIAL_AUTH_FAILED_MSG in request.session.peek_flash():
+        request.session.pop_flash()
+        if P_OVERRIDE_SOCIAL_AUTOLOGIN in request.permissions:
+            return None
     next_view = next_view or request.params.get('next', None)
     if discussion and not next_view:
         if landing_page:
@@ -755,6 +763,7 @@ def login_denied_view(request):
     localizer = request.localizer
     request.session.flash(localizer.translate(_('Login failed, try again')))
     get_route = create_get_route(request)
+    request.session.flash(SOCIAL_AUTH_FAILED_MSG)
     return HTTPFound(location=get_route('react_login',
                      _query=request.GET or None))
 
