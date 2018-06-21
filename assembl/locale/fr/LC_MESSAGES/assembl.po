@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  Assembl\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-06 11:14+0200\n"
+"POT-Creation-Date: 2018-06-21 09:39-0400\n"
 "PO-Revision-Date: 2018-02-05 17:41+0100\n"
 "Last-Translator: Quentin Grimaud <quentin.grimaud@gmail.com>\n"
 "Language: fr\n"
@@ -50,6 +50,132 @@ msgstr "${val} ne peut être sérialisé: ${err}"
 #: assembl/lib/colander.py:193
 msgid "${val} is not a string: ${err}"
 msgstr "${val} n’est pas une chaîne: ${err}"
+
+#: assembl/models/auth.py:615
+msgid "Straight rows of keys are easy to guess."
+msgstr "Les séquence de touches du clavier sont faciles à deviner."
+
+#: assembl/models/auth.py:616
+msgid "Short keyboard patterns are easy to guess."
+msgstr "De courtes séquences de clavier sont faciles à deviner."
+
+#: assembl/models/auth.py:617
+msgid "Repeats like \"aaa\" are easy to guess."
+msgstr "Des caractères répétés comme \"aaa\" sont faciles à deviner."
+
+#: assembl/models/auth.py:618
+msgid "Repeats like \"abcabcabc\" are only slightly harder to guess than \"abc\"."
+msgstr ""
+"Des caractères répétés comme \"abcabcabc\" sont à peine plus difficiles à"
+" deviner que \"abc\"."
+
+#: assembl/models/auth.py:619
+msgid "Sequences like abc or 6543 are easy to guess."
+msgstr "Des séquences comme abc ou 6543  sont faciles à deviner."
+
+#: assembl/models/auth.py:620
+msgid "Recent years are easy to guess."
+msgstr "Les années récentes sont faciles à deviner."
+
+#: assembl/models/auth.py:621
+msgid "Dates are often easy to guess."
+msgstr "Les dates sont souvent faciles à deviner."
+
+#: assembl/models/auth.py:622
+msgid "This is a top-10 common password."
+msgstr "C'est un des 10 mots de passe les plus communs."
+
+#: assembl/models/auth.py:623
+msgid "This is a top-100 common password."
+msgstr "C'est un des 100 mots de passe les plus communs."
+
+#: assembl/models/auth.py:624
+msgid "This is a very common password."
+msgstr "C'est un mot de passe très commun."
+
+#: assembl/models/auth.py:625
+msgid "This is similar to a commonly used password."
+msgstr "Ça ressemble à un mot de passe commun."
+
+#: assembl/models/auth.py:626
+msgid "A word by itself is easy to guess."
+msgstr "Il est trop facile de deviner un simple mot."
+
+#: assembl/models/auth.py:627
+msgid "Names and surnames by themselves are easy to guess."
+msgstr "Les noms est prénoms seuls sont faciles à deviner."
+
+#: assembl/models/auth.py:628
+msgid "Common names and surnames are easy to guess."
+msgstr "Les noms est prénoms courants sont faciles à deviner."
+
+#: assembl/models/auth.py:629
+msgid "Use a few words, avoid common phrases."
+msgstr "Utilisez quelques mots, évitez les locutions courantes."
+
+#: assembl/models/auth.py:630
+msgid "No need for symbols, digits, or uppercase letters."
+msgstr "Pas besoin de symboles, chiffres ou majuscules."
+
+#: assembl/models/auth.py:631
+msgid "Add another word or two. Uncommon words are better."
+msgstr "Ajoutez quelques mots, rares de préférence."
+
+#: assembl/models/auth.py:632
+msgid "Use a longer keyboard pattern with more turns."
+msgstr "Utilisez une forme plus complexe sur le clavier."
+
+#: assembl/models/auth.py:633
+msgid "Avoid repeated words and characters."
+msgstr "Évitez les mots et caractères répétés."
+
+#: assembl/models/auth.py:634
+msgid "Avoid sequences."
+msgstr "Évitez les séquences."
+
+#: assembl/models/auth.py:635
+msgid "Avoid recent years."
+msgstr "Évitez les années récentes."
+
+#: assembl/models/auth.py:636
+msgid "Avoid years that are associated with you."
+msgstr "Évitez les années associées à vous."
+
+#: assembl/models/auth.py:637
+msgid "Avoid dates and years that are associated with you."
+msgstr "Évitez les dates et annéez associées à vous."
+
+#: assembl/models/auth.py:638
+msgid "Capitalization doesn't help very much."
+msgstr "Les majuscules n'aident pas beaucoup."
+
+#: assembl/models/auth.py:639
+msgid "All-uppercase is almost as easy to guess as all-lowercase."
+msgstr ""
+"Les mots en majuscules sont presque aussi faciles à deviner que ceux en "
+"minuscules."
+
+#: assembl/models/auth.py:640
+msgid "Reversed words aren't much harder to guess."
+msgstr "Les mots renversés ne sont pas beaucoup plus difficiles à deviner."
+
+#: assembl/models/auth.py:641
+msgid "Predictable substitutions like '@' instead of 'a' don't help very much."
+msgstr ""
+"Les substitutions prévisibles, telles le '@' au lieu de 'a', n'aident pas"
+" beaucoup."
+
+#: assembl/models/auth.py:770
+msgid "Password shorter than ${minlen} characters"
+msgstr "Mot de passe de moins de ${minlen} caractères"
+
+#: assembl/models/auth.py:781
+msgid "Your password should include at least a ${class}"
+msgstr "Votre mot de passe doit inclure au moins ${class}"
+
+#: assembl/models/auth.py:794
+msgid "Please do not repeat an older password."
+msgstr "Veuillez ne pas répéter un ancien mot de passe."
 
 #: assembl/models/edgesense_drupal.py:173
 msgid "Unknown User ${uid}"
@@ -306,38 +432,66 @@ msgstr ""
 " vide, n'importe qui peut s'auto-inscrire. "
 
 #: assembl/models/preferences.py:746
+#, fuzzy
+msgid "Whitelist on authentication service"
+msgstr "Type du service d'identification"
+
+#: assembl/models/preferences.py:749
+msgid "Allow white list to be applied to the authentication service chosen"
+msgstr ""
+
+#: assembl/models/preferences.py:761
+msgid "Whitelist on standard registration"
+msgstr ""
+
+#: assembl/models/preferences.py:764
+msgid "Allow white list to be applied to the default login process"
+msgstr ""
+
+#: assembl/models/preferences.py:776
+#, fuzzy
+msgid "Discussion administrators"
+msgstr "Statistiques de la discussion"
+
+#: assembl/models/preferences.py:779
+msgid ""
+"A list of discussion administrators, if different from the server "
+"administrator"
+msgstr ""
+
+#: assembl/models/preferences.py:792
 msgid "Show CI Dashboard"
 msgstr "Montrer le CI Dashboard"
 
-#: assembl/models/preferences.py:749
+#: assembl/models/preferences.py:795
 msgid "Show the CI Dashboard in the panel group window"
 msgstr ""
 "Montrer le tableau de bord d’intelligence collective (CI Dashboard) dans "
 "le dialogue de groupe de pannaux"
 
-#: assembl/models/preferences.py:761
+#: assembl/models/preferences.py:807
 msgid "URL of CI Dashboard"
 msgstr "URL du CI Dashboard"
 
-#: assembl/models/preferences.py:763
+#: assembl/models/preferences.py:809
 msgid "Configuration of the visualizations shown in the CI Dashboard"
 msgstr ""
 "Configuration des visualisations montrées dans le tableau de bord "
 "d’intelligence collective (CI Dashboard)"
 
-#: assembl/models/preferences.py:781
+#: assembl/models/preferences.py:827
 msgid "Catalyst Visualizations"
 msgstr "Visualisations Catalyst"
 
-#: assembl/models/preferences.py:784
+#: assembl/models/preferences.py:830
 msgid "A JSON description of available Catalyst visualizations"
 msgstr "Une description en JSON des visualisations Catalyst disponibles"
 
-#: assembl/models/preferences.py:796
+#: assembl/models/preferences.py:842
 msgid "Navigation sections"
 msgstr "Sections de navigation"
 
-#: assembl/models/preferences.py:799
+#: assembl/models/preferences.py:845
 msgid ""
 "A JSON specification of Catalyst visualizations to show in the navigation"
 " section"
@@ -345,21 +499,21 @@ msgstr ""
 "Une spécification en JSON des visualisations Catalyst à montrer dans le "
 "navigateur"
 
-#: assembl/models/preferences.py:812
+#: assembl/models/preferences.py:858
 msgid "Catalyst translations"
 msgstr "Traduction Catalyst"
 
-#: assembl/models/preferences.py:815
+#: assembl/models/preferences.py:861
 msgid "Translations applicable to Catalyst visualizations, in Jed (JSON) format"
 msgstr ""
 "Traductions applicables aux visualisations Catalyst, dans le format Jed "
 "(JSON)"
 
-#: assembl/models/preferences.py:832
+#: assembl/models/preferences.py:878
 msgid "Default Table of Ideas Collapsed state"
 msgstr "État déployé/replié par défaut de la Table des Idées"
 
-#: assembl/models/preferences.py:835
+#: assembl/models/preferences.py:881
 msgid ""
 "Default expanded/collapsed state of each idea in the table of ideas. A "
 "user can override it by opening/closing an idea"
@@ -367,39 +521,39 @@ msgstr ""
 "L’état déployé/replié par défaut pour chaque idée dans la table des "
 "idées. (L’état déployé/replié de l’utilisateur aura préséance.)"
 
-#: assembl/models/preferences.py:850
+#: assembl/models/preferences.py:896
 msgid "Preference data"
 msgstr "Données de préférences"
 
-#: assembl/models/preferences.py:853
+#: assembl/models/preferences.py:899
 msgid "The preference configuration; override only with care"
 msgstr ""
 "La configuration des préférences; faire très attention si vous "
 "l’outrepassez."
 
-#: assembl/models/preferences.py:865
+#: assembl/models/preferences.py:911
 msgid "Cookies banner"
 msgstr "Bandeau de cookies"
 
-#: assembl/models/preferences.py:868
+#: assembl/models/preferences.py:914
 msgid "Show the banner offering to disable Piwik cookies"
 msgstr "Afficher le bandeau qui permet de désactiver les cookies Piwik"
 
-#: assembl/models/preferences.py:880
+#: assembl/models/preferences.py:926
 msgid "Custom HTML code on the landing page"
 msgstr ""
 
-#: assembl/models/preferences.py:883
+#: assembl/models/preferences.py:929
 msgid ""
 "Custom HTML code that will be integrated on the landing page of the "
 "debate, right after the <body> tag"
 msgstr ""
 
-#: assembl/models/preferences.py:893
+#: assembl/models/preferences.py:939
 msgid "Custom HTML code on the user registration page"
 msgstr ""
 
-#: assembl/models/preferences.py:896
+#: assembl/models/preferences.py:942
 msgid ""
 "Custom HTML code that will be integrated on the user registration page of"
 " the debate, right after the <body> tag"
@@ -769,6 +923,7 @@ msgstr ""
 "pour vous aider à rejoindre les échanges en cours."
 
 #: assembl/static/js/app/utils/tours/assemblTours.js:37
+#: assembl/templates/join0.jinja2:6
 msgid "Join the discussion"
 msgstr "Rejoindre la discussion"
 
@@ -1870,27 +2025,27 @@ msgstr "Veuillez choisir un nombre"
 msgid "This does not appear to be a URL"
 msgstr "Ceci ne semble pas être une URL valide"
 
-#: assembl/static/js/app/views/preferencesView.js:546
+#: assembl/static/js/app/views/preferencesView.js:547
 msgid "This does not appear to be an email"
 msgstr "Ça ne semble pas une adresse de courriel valide"
 
-#: assembl/static/js/app/views/preferencesView.js:566
+#: assembl/static/js/app/views/preferencesView.js:567
 msgid "This does not appear to be a domain"
 msgstr "Ceci ne semble pas être un domaine valide"
 
-#: assembl/static/js/app/views/preferencesView.js:901
+#: assembl/static/js/app/views/preferencesView.js:902
 msgid "The following settings were not saved: "
 msgstr "Les paramètres suivants n'ont pas pu être enregistrés."
 
 #: assembl/static/js/app/views/admin/adminDiscussion.js:96
-#: assembl/static/js/app/views/preferencesView.js:904
+#: assembl/static/js/app/views/preferencesView.js:905
 #: assembl/static/js/app/views/sourceEditView.js:49
 #: assembl/static/js/app/views/user/account.js:126
 #: assembl/static/js/app/views/user/profile.js:66
 msgid "Your settings were saved!"
 msgstr "Vos configurations ont été sauvegardées!"
 
-#: assembl/static/js/app/views/preferencesView.js:910
+#: assembl/static/js/app/views/preferencesView.js:911
 msgid "Your settings are up-to-date."
 msgstr "Vos préférences sont à jour."
 
@@ -2373,6 +2528,20 @@ msgstr "Par"
 #: assembl/templates/idea_in_synthesis.jinja2:16
 msgid "See the conversation around this idea"
 msgstr "Voir la conversation autour de cette idée"
+
+#: assembl/templates/join0.jinja2:7
+#, fuzzy, python-format
+msgid "This is you first visit to the discussion '%s'."
+msgstr "vous devez d’abord rejoindre cette discussion"
+
+#: assembl/templates/join0.jinja2:9
+msgid "By entering, you agree to receive the following notifications:"
+msgstr ""
+
+#: assembl/templates/join0.jinja2:17
+#, fuzzy
+msgid "join"
+msgstr "Se connecter"
 
 #: assembl/templates/login.jinja2:30
 #, python-format
@@ -4706,87 +4875,99 @@ msgstr "désabonné"
 msgid "No file given."
 msgstr "Pas de fichier envoyé."
 
-#: assembl/views/api/post.py:80 assembl/views/api/post.py:624
+#: assembl/views/api/post.py:81 assembl/views/api/post.py:625
 #, python-format
 msgid "No discussion found with id=%s"
 msgstr "Aucune discussion trouvée avec l’id=%s"
 
-#: assembl/views/api/post.py:227
+#: assembl/views/api/post.py:228
 msgid "Getting orphan posts of a specific idea isn't supported."
 msgstr ""
 "Il n’est pas possible d’obtenir les messages orphelins d’une idée "
 "spécifique."
 
-#: assembl/views/api/post.py:297
+#: assembl/views/api/post.py:298
 msgid "Do not combine negative and positive classifiers"
 msgstr "Ne pas combiner les classificateurs négatifs et positifs"
 
-#: assembl/views/api/post.py:358
+#: assembl/views/api/post.py:359
 msgid "You must be logged in to view which posts are read"
 msgstr "Vous devez être connecté pour voir quels messages ont été lus"
 
-#: assembl/views/api/post.py:608
+#: assembl/views/api/post.py:609
 msgid "Your message is empty"
 msgstr "Votre message est vide"
 
-#: assembl/views/api2/auth.py:346
+#: assembl/views/api2/auth.py:347
 msgid "The user does not exist"
 msgstr "Cet utilisateur n'existe pas"
 
-#: assembl/views/api2/auth.py:357
+#: assembl/views/api2/auth.py:358
 msgid "This email does not exist"
 msgstr "Cette addresse e-mail ne correspond à aucun compte utilisateur"
 
-#: assembl/views/api2/auth.py:362
+#: assembl/views/api2/auth.py:363
 msgid "Please give an identifier"
 msgstr "Veuillez donner un identifiant"
 
-#: assembl/views/api2/auth.py:367
+#: assembl/views/api2/auth.py:368
 msgid "This user has no email"
 msgstr "Cet utilisateur n'a pas d'adresse e-mail"
 
-#: assembl/views/api2/auth.py:370
+#: assembl/views/api2/auth.py:371
 msgid "This is not a user"
 msgstr "Ce n’est pas un utilisateur"
 
-#: assembl/views/api2/auth.py:391
+#: assembl/views/api2/auth.py:392
 msgid "The passwords that were entered are mismatched!"
 msgstr "Les mots de passe qui ont été écrits ne correspondent pas"
 
-#: assembl/views/api2/auth.py:405 assembl/views/auth/views.py:964
+#: assembl/views/api2/auth.py:406 assembl/views/auth/views.py:964
 #: assembl/views/auth/views.py:1032
 msgid "This link is not valid. Do you want us to send another?"
 msgstr ""
 "Ce lien n'est pas valide. Est-ce que vous souhaitez que nous en envoyions"
 " un autre ?"
 
-#: assembl/views/api2/auth.py:408 assembl/views/auth/views.py:967
+#: assembl/views/api2/auth.py:409 assembl/views/auth/views.py:967
 #: assembl/views/auth/views.py:1035
 msgid "This link has been used. Do you want us to send another?"
 msgstr ""
 "Ce lien a été utilisé. Est-ce que vous souhaitez que nous en envoyions un"
 " autre ?"
 
-#: assembl/views/api2/auth.py:443 assembl/views/auth/views.py:388
+#: assembl/views/api2/auth.py:441 assembl/views/auth/views.py:388
 msgid "Please use a name of at least 3 characters"
 msgstr "Veuillez emloyer un nom d’au moins trois caractères"
 
-#: assembl/views/api2/auth.py:452 assembl/views/auth/views.py:321
+#: assembl/views/api2/auth.py:450 assembl/views/auth/views.py:321
 #: assembl/views/auth/views.py:395
 msgid "This is not a valid email"
 msgstr "Ce n’est pas une adresse de courriel valide"
 
-#: assembl/views/api2/auth.py:460 assembl/views/auth/views.py:402
+#: assembl/views/api2/auth.py:458 assembl/views/auth/views.py:402
 msgid "We already have a user with this email."
 msgstr "Nous avons déjà un utilisateur ayant ce courriel."
 
-#: assembl/views/api2/auth.py:465
+#: assembl/views/api2/auth.py:463
 msgid "No email."
 msgstr "Pas d'adresse e-mail."
 
-#: assembl/views/api2/auth.py:471
+#: assembl/views/api2/auth.py:469
 msgid "We already have a user with this username."
 msgstr "Nous avons déjà un utilisateur ayant ce nom d'utilisateur."
+
+#: assembl/views/api2/auth.py:483
+msgid ""
+"Your email domain has not been approved for registration. Please contact "
+"${emails} for support."
+msgstr ""
+
+#: assembl/views/api2/auth.py:484
+msgid ""
+"Your email domain has not been approved for registration. Please contact "
+"one of ${emails} for support."
+msgstr ""
 
 #: assembl/views/auth/views.py:294
 #, python-format
@@ -5004,11 +5185,11 @@ msgstr ""
 "pour votre compte {assembl}.</p>\n"
 "<p>Cordialement,<br />L'équipe {assembl}</p>"
 
-#: assembl/views/auth/views.py:1145
+#: assembl/views/auth/views.py:1142
 msgid "Request for password change"
 msgstr "Requête de changement de mot de passe"
 
-#: assembl/views/auth/views.py:1149
+#: assembl/views/auth/views.py:1146
 msgid ""
 "<p>Hello, {name}!</p>\n"
 "<p>We have received a request to change the password on your {assembl} "
@@ -5028,7 +5209,7 @@ msgstr ""
 "ignorer cet email.</p>\n"
 "<p>Cordialement,<br />L'équipe {assembl}</p>\n"
 
-#: assembl/views/auth/views.py:1155
+#: assembl/views/auth/views.py:1152
 msgid ""
 "Hello, {name}!\n"
 "We have received a request to change the password on your {assembl} "
