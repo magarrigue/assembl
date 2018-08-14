@@ -26,38 +26,42 @@ type Props = {
 
 const loading = <Loader />;
 
-const DumbSurveyAdminForm = ({ client, currentStep, phaseId, debateId, editLocale, locale }: Props) => (
-  <LoadSaveReinitializeForm
-    load={(fetchPolicy: FetchPolicy) => load(client, fetchPolicy, phaseId)}
-    loading={loading}
-    postLoadFormat={postLoadFormat}
-    createMutationsPromises={createMutationsPromises(client)}
-    save={save}
-    validate={validate}
-    mutators={{
-      ...arrayMutators
-    }}
-    render={({ handleSubmit, pristine, submitting, values }) => (
-      <React.Fragment>
-        <div className="admin-content">
-          <AdminForm handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
-            {currentStep === 1 && <Step1 editLocale={editLocale} />}
-            {currentStep === 2 && <Step2 editLocale={editLocale} values={values} />}
-            {currentStep === 3 && <Step3 debateId={debateId} locale={locale} />}
-          </AdminForm>
-        </div>
-        {!isNaN(currentStep) && (
-          <Navbar
-            currentStep={currentStep}
-            totalSteps={3}
-            phaseIdentifier="survey"
-            beforeChangeSection={() => (pristine || submitting) && handleSubmit()}
-          />
-        )}
-      </React.Fragment>
-    )}
-  />
-);
+const DumbSurveyAdminForm = ({ client, currentStep, phaseId, debateId, editLocale, locale }: Props) => {
+  const discussionPhaseId = phaseId ? atob(phaseId).split(':')[1] : null;
+  return (
+    <LoadSaveReinitializeForm
+      load={(fetchPolicy: FetchPolicy) => load(client, fetchPolicy, discussionPhaseId)}
+      loading={loading}
+      postLoadFormat={postLoadFormat}
+      createMutationsPromises={createMutationsPromises(client, discussionPhaseId)}
+      save={save}
+      validate={validate}
+      mutators={{
+        ...arrayMutators
+      }}
+      render={({ handleSubmit, pristine, submitting, values }) => (
+        <React.Fragment>
+          <div className="admin-content">
+            <AdminForm handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
+              {currentStep === 1 && <Step1 editLocale={editLocale} />}
+              {currentStep === 2 && <Step2 editLocale={editLocale} values={values} />}
+              {currentStep === 3 && <Step3 debateId={debateId} locale={locale} />}
+            </AdminForm>
+          </div>
+          {!isNaN(currentStep) && (
+            <Navbar
+              queryArgs={{ phaseId: phaseId }}
+              currentStep={currentStep}
+              totalSteps={3}
+              phaseIdentifier="survey"
+              beforeChangeSection={() => (pristine || submitting) && handleSubmit()}
+            />
+          )}
+        </React.Fragment>
+      )}
+    />
+  );
+};
 
 const mapStateToProps = state => ({
   debateId: state.context.debateId,

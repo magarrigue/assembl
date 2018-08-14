@@ -9,7 +9,8 @@ import { browserHistory } from '../../router';
 
 class Navbar extends React.Component {
   static defaultProps = {
-    beforeChangeSection: () => {}
+    beforeChangeSection: () => {},
+    queryArgs: {}
   };
 
   constructor(props) {
@@ -31,9 +32,10 @@ class Navbar extends React.Component {
 
   goToSection(stepNb) {
     const slug = { slug: getDiscussionSlug() };
-    const { phaseIdentifier } = this.props;
+    const { phaseIdentifier, queryArgs } = this.props;
+
     browserHistory.push(
-      `${get('administration', slug)}${get('adminPhase', { ...slug, phase: phaseIdentifier })}?section=${stepNb}`
+      `${get('administration', slug)}${get('adminPhase', { ...slug, phase: phaseIdentifier }, { section: stepNb, ...queryArgs })}`
     );
     this.setState({
       currentStep: stepNb
