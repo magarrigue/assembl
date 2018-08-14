@@ -99,7 +99,11 @@ class Menu extends React.Component {
           ? timeline.map((phase, phaseIndex) => (
             <li className="menu-item" key={phaseIndex}>
               <Link
-                to={`${get('administration', slug)}${get('adminPhase', { ...slug, phase: phase.identifier })}?section=1`}
+                to={`${get('administration', slug)}${get('adminPhase', {
+                  ...slug,
+                  phase: phase.identifier,
+                  phaseId: phase.id
+                })}?section=1`}
                 activeClassName="active"
               >
                 <Translate value="administration.menu.phase" count={phaseIndex + 1} description={phase.title} />
@@ -113,7 +117,8 @@ class Menu extends React.Component {
                         <Link
                           to={`${get('administration', slug)}${get('adminPhase', {
                             ...slug,
-                            phase: phase.identifier
+                            phase: phase.identifier,
+                            phaseId: phase.id
                           })}?section=${parseInt(index, 10) + 1}`}
                           activeClassName="active"
                         >

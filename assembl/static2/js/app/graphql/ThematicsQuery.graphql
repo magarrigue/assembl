@@ -1,7 +1,7 @@
 #import "./fragments/LangString.graphql"
 
 query ThematicsQuery($identifier: String!) {
-  thematics: ideas(identifier: $identifier) {
+  thematics: ideasById(identifier: $identifier) {
     ... on IdeaInterface {
       messageViewOverride
       order

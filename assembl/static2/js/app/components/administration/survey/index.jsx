@@ -19,15 +19,16 @@ type Props = {
   client: ApolloClient,
   currentStep: number,
   debateId: string,
+  phaseId: string,
   editLocale: string,
   locale: string
 };
 
 const loading = <Loader />;
 
-const DumbSurveyAdminForm = ({ client, currentStep, debateId, editLocale, locale }: Props) => (
+const DumbSurveyAdminForm = ({ client, currentStep, phaseId, debateId, editLocale, locale }: Props) => (
   <LoadSaveReinitializeForm
-    load={(fetchPolicy: FetchPolicy) => load(client, fetchPolicy)}
+    load={(fetchPolicy: FetchPolicy) => load(client, fetchPolicy, phaseId)}
     loading={loading}
     postLoadFormat={postLoadFormat}
     createMutationsPromises={createMutationsPromises(client)}
