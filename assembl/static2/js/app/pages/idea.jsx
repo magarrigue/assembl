@@ -185,6 +185,7 @@ class Idea extends React.Component {
       ideaLoading,
       ideaWithPostsData,
       identifier,
+      phaseId,
       routerParams
     } = this.props;
     const refetchIdea = ideaWithPostsData.refetch;
@@ -212,6 +213,7 @@ class Idea extends React.Component {
     const topPosts = this.getTopPosts();
     const childProps = {
       identifier: identifier,
+      phaseId: phaseId,
       timeline: timeline,
       debateData: debateData,
       ideaId: id,
@@ -255,7 +257,7 @@ class Idea extends React.Component {
           title={title}
           synthesisTitle={synthesisTitle}
           imgUrl={headerImgUrl}
-          identifier={identifier}
+          phaseId={phaseId}
           ideaId={id}
           routerParams={routerParams}
           type="idea"
