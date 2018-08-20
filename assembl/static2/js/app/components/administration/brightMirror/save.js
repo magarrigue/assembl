@@ -11,10 +11,10 @@ import updateThematicMutation from '../../../graphql/mutations/updateThematic.gr
 import { createSave, convertToEntries, getFileVariable } from '../../form/utils';
 import { convertEntriesToHTML } from '../../../utils/draftjs';
 
-function getVariables(theme, initialTheme, order) {
+function getVariables(theme, initialTheme, order, discussionPhaseId) {
   const initialImg = initialTheme ? initialTheme.img : null;
   return {
-    identifier: PHASES.brightMirror,
+    discussionPhaseId: discussionPhaseId,
     messageViewOverride: PHASES.brightMirror,
     titleEntries: convertToEntries(theme.title),
     descriptionEntries: convertToEntries(theme.description),
@@ -27,7 +27,7 @@ function getVariables(theme, initialTheme, order) {
   };
 }
 
-export const createMutationsPromises = (client: ApolloClient) => (
+export const createMutationsPromises = (client: ApolloClient, discussionPhaseId: ?string) => (
   values: BrightMirrorAdminValues,
   initialValues: BrightMirrorAdminValues
 ) => {
@@ -49,7 +49,7 @@ export const createMutationsPromises = (client: ApolloClient) => (
   const createUpdateMutations = values.themes.map((theme, idx) => {
     const initialTheme = initialValues.themes.find(t => t.id === theme.id);
     const order = idx !== initialIds.indexOf(theme.id) ? idx + 1 : null;
-    const variables = getVariables(theme, initialTheme, order);
+    const variables = getVariables(theme, initialTheme, order, discussionPhaseId);
     if (idsToCreate.indexOf(theme.id) > -1) {
       return () =>
         client.mutate({

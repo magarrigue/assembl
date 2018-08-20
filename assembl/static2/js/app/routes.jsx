@@ -93,7 +93,7 @@ const AdminChild = (props) => {
       />
     );
   case 'brightMirror':
-    return <BrightMirrorAdmin {...props} />;
+    return <BrightMirrorAdmin {...props} phaseId={props.location.query.phaseId} />;
   case 'thread':
     return <ThreadAdmin {...props} section={props.location.query.section} />;
   case 'multiColumn':
