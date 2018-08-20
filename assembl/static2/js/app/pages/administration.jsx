@@ -312,9 +312,9 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   graphql(VoteSessionQuery, {
     skip: ({ timeline }) => typeof getPhaseId(timeline, 'voteSession') !== 'string',
-    options: ({ timeline, i18n }) => {
-      const id = timeline ? getPhaseId(timeline, 'voteSession') : null;
-      const discussionPhaseId = id ? atob(id).split(':')[1] : null;
+    options: ({ i18n, location }) => {
+      const phaseId = location.query.phaseId;
+      const discussionPhaseId = phaseId ? atob(phaseId).split(':')[1] : null;
       return {
         variables: { discussionPhaseId: discussionPhaseId, lang: i18n.locale }
       };
