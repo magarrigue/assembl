@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 
 import { Col } from 'react-bootstrap';
@@ -5,9 +6,24 @@ import activeHtml from 'react-active-html';
 import { postBodyReplacementComponents } from '../common/post/postBody';
 import Permissions, { connectedUserCan } from '../../../utils/permissions';
 import TopPostFormContainer from '../../../components/debate/common/topPostFormContainer';
-import { getIfPhaseCompletedByIdentifier } from '../../../utils/timeline';
+import { getIfPhaseCompletedById } from '../../../utils/timeline';
 
-const InstructionView = ({ isUserConnected, ideaId, refetchIdea, posts, announcementContent, timeline, identifier }) => (
+type Announcement = {
+  title: string,
+  body: string
+};
+
+type Props = {
+  isUserConnected: boolean,
+  ideaId: string,
+  refetchIdea: Function,
+  posts: Array<*>,
+  timeline: Timeline,
+  phaseId: string,
+  announcementContent: Announcement
+};
+
+const InstructionView = ({ isUserConnected, ideaId, refetchIdea, posts, announcementContent, timeline, phaseId }: Props) => (
   <div className="overflow-x">
     <div className="announcement">
       <div className="announcement-title">
@@ -18,7 +34,7 @@ const InstructionView = ({ isUserConnected, ideaId, refetchIdea, posts, announce
         <div>{activeHtml(announcementContent.body, postBodyReplacementComponents())}</div>
       </Col>
     </div>
-    {isUserConnected && connectedUserCan(Permissions.ADD_POST) && !getIfPhaseCompletedByIdentifier(timeline, identifier) ? (
+    {isUserConnected && connectedUserCan(Permissions.ADD_POST) && !getIfPhaseCompletedById(timeline, phaseId) ? (
       <TopPostFormContainer
         ideaId={ideaId}
         refetchIdea={refetchIdea}

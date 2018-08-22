@@ -8,7 +8,7 @@ import { hexToRgb } from '../../../utils/globalFunctions';
 import { MIN_WIDTH_COLUMN, SMALL_SCREEN_HEIGHT } from '../../../constants';
 
 type TopPostFormContainerProps = {
-  messageColumns: Object,
+  messageColumns: Array<*>,
   isColumnViewInline: boolean,
   ideaId: string,
   refetchIdea: Function,
@@ -33,7 +33,9 @@ class TopPostFormContainer extends React.Component<TopPostFormContainerProps, To
   topPostFormContainer: () => void;
 
   static defaultProps = {
-    instructionLabel: 'debate.thread.startDiscussion'
+    instructionLabel: 'debate.thread.startDiscussion',
+    isColumnViewInline: false,
+    messageColumns: []
   };
 
   constructor(props: TopPostFormContainerProps) {
@@ -66,7 +68,7 @@ class TopPostFormContainer extends React.Component<TopPostFormContainerProps, To
   }
 
   getClassNames() {
-    const { messageColumns = [], isColumnViewInline } = this.props;
+    const { messageColumns, isColumnViewInline } = this.props;
     return classNames({ 'columns-view': messageColumns.length > 1 }, { 'columns-view-inline': isColumnViewInline });
   }
 
@@ -75,7 +77,7 @@ class TopPostFormContainer extends React.Component<TopPostFormContainerProps, To
   }
 
   getColumnsInfos() {
-    const { messageColumns = [] } = this.props;
+    const { messageColumns } = this.props;
     let columnsInfos = [];
     if (messageColumns.length > 1) {
       columnsInfos = messageColumns;
@@ -90,7 +92,7 @@ class TopPostFormContainer extends React.Component<TopPostFormContainerProps, To
     const {
       ideaId,
       refetchIdea,
-      messageColumns = [],
+      messageColumns,
       isColumnViewInline,
       topPostsCount,
       instructionLabel,

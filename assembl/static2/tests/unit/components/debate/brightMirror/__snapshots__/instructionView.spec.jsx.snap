@@ -33,6 +33,17 @@ exports[`Bright Mirror page should hide fiction creation section if timeline is 
       </div>
     </Col>
   </div>
+  <TopPostFormContainer
+    bodyPlaceholder="debate.brightMirror.fillBodyLabel"
+    fillBodyLabel="debate.brightMirror.fillBodyLabel"
+    ideaId={0}
+    instructionLabel="debate.brightMirror.startFictionLabel"
+    isColumnViewInline={false}
+    messageColumns={Array []}
+    postSuccessMsg="debate.brightMirror.postSuccessMsg"
+    refetchIdea={[Function]}
+    topPostsCount={0}
+  />
 </div>
 `;
 
@@ -146,6 +157,8 @@ exports[`Bright Mirror page should match BrightMirror instruction snapshot 1`] =
     fillBodyLabel="debate.brightMirror.fillBodyLabel"
     ideaId={0}
     instructionLabel="debate.brightMirror.startFictionLabel"
+    isColumnViewInline={false}
+    messageColumns={Array []}
     postSuccessMsg="debate.brightMirror.postSuccessMsg"
     refetchIdea={[Function]}
     topPostsCount={0}
