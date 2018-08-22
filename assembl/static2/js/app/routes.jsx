@@ -109,7 +109,10 @@ export default [
     <Route path={routeForRouter('integrationPage', false, { preSlash: true })} component={IntMainPage} />
     <Route path={routeForRouter('integration101Page', false, { preSlash: true })} component={Int101Page} />
     <Route path={routeForRouter('integration101FormBuilderPage', false, { preSlash: true })} component={Int101FormBuilderPage} />
-    <Route path={routeForRouter('integrationBrightMirrorFiction', false, { preSlash: true })} component={IntBrightMirrorFiction} />
+    <Route
+      path={routeForRouter('integrationBrightMirrorFiction', false, { preSlash: true })}
+      component={IntBrightMirrorFiction}
+    />
     {/* once the integration workflow is mature, Styleguide component will be replaced by Storybook and thus can be removed */}
     <Route path={routeForRouter('styleguide', false, { preSlash: true })} component={Styleguide} />
     {/* Those login routes should be kept in synchrony with assembl.views.auth.__init__.py */}
@@ -139,8 +142,14 @@ export default [
         <Route path={routeForRouter('rootDebate')} />
         <Route path={routeForRouter('debate', false, { phase: ':phase' })} component={DebateHome}>
           <Route path={routeForRouter('theme', false, { themeId: ':themeId' })} component={DebateChild} />
-          <Route path={routeForRouter('brightMirrorFiction', false, { themeId: ':themeId', postId: ':themeId' })} component={BrightMirrorFiction} />
-          <Route path={routeForRouter('question', false, { questionId: ':questionId', questionIndex: ':questionIndex' })} component={Question} />
+          <Route
+            path={routeForRouter('brightMirrorFiction', false, { themeId: ':themeId', postId: ':themeId' })}
+            component={BrightMirrorFiction}
+          />
+          <Route
+            path={routeForRouter('question', false, { questionId: ':questionId', questionIndex: ':questionIndex' })}
+            component={Question}
+          />
         </Route>
         <Route path={routeForRouter('unauthorizedAdministration')} component={UnauthorizedAdministration} />
         <Route path={routeForRouter('administration')} component={Administration}>
