@@ -29,7 +29,7 @@ import deleteProposalMutation from '../graphql/mutations/deleteProposal.graphql'
 import { convertEntriesToHTML } from '../utils/draftjs';
 import { get } from '../utils/routeMap';
 import { displayAlert, displayCustomModal, closeModal } from '../utils/utilityManager';
-import { getDiscussionSlug } from '../utils/globalFunctions';
+import { getDiscussionSlug, fromGlobalId } from '../utils/globalFunctions';
 
 type VoteModule = {
   choices?: Array<VoteChoice>,
@@ -344,7 +344,7 @@ class VoteSessionAdmin extends React.Component<VoteSessionAdminProps, VoteSessio
       const propositionsSectionTitleEntries = voteSessionPage.get('propositionsSectionTitleEntries').toJS();
       const pageHeaderImage = voteSessionPage.get('headerImage').toJS();
       const headerImage = typeof pageHeaderImage.externalUrl === 'object' ? pageHeaderImage.externalUrl : null;
-      const discussionPhaseId = phaseId ? atob(phaseId).split(':')[1] : null;
+      const discussionPhaseId = fromGlobalId(phaseId);
       const payload = {
         variables: {
           discussionPhaseId: discussionPhaseId,

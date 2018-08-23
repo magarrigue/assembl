@@ -15,6 +15,7 @@ import { createMutationsPromises, save } from './save';
 import validate from './validate';
 import Loader from '../../common/loader';
 import { PHASES } from '../../../constants';
+import { fromGlobalId } from '../../../utils/globalFunctions';
 
 type Props = {
   client: ApolloClient,
@@ -28,7 +29,7 @@ type Props = {
 const loading = <Loader />;
 
 const DumbSurveyAdminForm = ({ client, currentStep, phaseId, debateId, editLocale, locale }: Props) => {
-  const discussionPhaseId = phaseId ? atob(phaseId).split(':')[1] : null;
+  const discussionPhaseId = fromGlobalId(phaseId);
   return (
     <LoadSaveReinitializeForm
       load={(fetchPolicy: FetchPolicy) => load(client, fetchPolicy, discussionPhaseId)}
