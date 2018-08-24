@@ -25,6 +25,7 @@ function loadStories() {
   require('../js/app/integration/101/components/checkboxList101/checkboxList101.stories.jsx');
 
   require('../js/app/stories/components/debate/brightMirror/circleAvatar.jsx');
+  require('../js/app/stories/components/debate/brightMirror/fictionHeader.jsx');
 
   // TODO: To clean ?
   // require('../js/app/stories/components/common/common.jsx');
