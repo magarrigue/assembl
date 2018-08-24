@@ -497,7 +497,7 @@ const Translations = {
       confirmTextFieldDeletion: "Êtes-vous certain de vouloir supprimer ce champ ?",
       confirmSelectFieldOptionDeletionTitle: "Supprimer cet item",
       confirmSelectFieldOptionDeletion: "Êtes-vous certain de vouloir supprimer cet item ?",
-      addThematic: "Ajouter une thématique",
+      addThematic: "Ajouter une thématique de niveau %{level}",
       addQuestion: "Ajouter une question",
       anErrorOccured:
         "Il y a eu une erreur lors de la sauvegarde, veuillez vérifier que vous avez bien renseigné tous les champs requis.",
@@ -727,8 +727,7 @@ const Translations = {
         descriptionPhase: "Description de la phase"
       },
       tableOfThematics: {
-        confirmDeletionTitle: "Supprimer la thématique %{title}",
-        confirmDeletionBody: "Etes-vous certain de vouloir supprimer cette thématique ?"
+        thematicTitle: "Titre de la Thématique"
       },
       resourcesCenter: {
         createResource: "Ajouter un média",
@@ -1335,7 +1334,7 @@ const Translations = {
       confirmTextFieldDeletion: "Are you sure that you want to delete this field?",
       confirmSelectFieldOptionDeletionTitle: "Delete this item",
       confirmSelectFieldOptionDeletion: "Are you sure that you want to delete this item?",
-      addThematic: "Add a theme",
+      addThematic: "Add a level %{level} thematic",
       addQuestion: "Add a question",
       anErrorOccured: "An error occured during save. Please check that you filled all the required fields.",
       deleteThematic: "Delete the theme",
@@ -1558,8 +1557,7 @@ const Translations = {
         descriptionPhase: "Description phase"
       },
       tableOfThematics: {
-        confirmDeletionTitle: "Delete %{title} theme",
-        confirmDeletionBody: "Are you sure that you wish to delete this theme?"
+        thematicTitle: "Thematic title"
       },
       resourcesCenter: {
         createResource: "Add a media",
