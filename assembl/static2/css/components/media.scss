@@ -23,17 +23,9 @@
     .media-description-layer {
       text-align: justify;
       font-family: $font-family2;
-      font-size: $font-size-m;
-      line-height: 32px;
+      font-size: $font-size-sm;
+      line-height: 26px;
       letter-spacing: 1px;
-    }
-
-    .media-description-top {
-      margin-bottom: $margin-section-xxxs;
-    }
-
-    .media-description-bottom {
-      margin-top: $margin-section-xxxs;
     }
 
     .media-description {

@@ -226,6 +226,12 @@
     top: $navbar-height;
   }
 
+  .top-post-form {
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
+
   .top-post-sticky {
     position: fixed;
     top: 60px;
@@ -435,7 +441,7 @@
 
 @media screen and (min-width: 768px) {
   .top-post-form {
-    padding: 33px 0 0;
+    padding: 21px 0 0;
   }
 }
 
