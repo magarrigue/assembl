@@ -323,6 +323,7 @@ const Translations = {
       thread: {
         messageTranslatedFrom: "Ce message a été traduit du texte %{language}.",
         messageOriginallyIn: "Ce message a été rédigé en %{language}.",
+        translateButton: "traduire",
         translateAllMessagesIn: "Je souhaite traduire tous les messages rédigés en %{language}.",
         translateOnlyThisMessage: "Je souhaite traduire ce message.",
         untranslateOnlyThisMessage: "Je souhaite afficher uniquement ce message dans sa langue originale",
@@ -1098,6 +1099,7 @@ const Translations = {
       thread: {
         messageTranslatedFrom: "This message has been translated from %{language}.",
         messageOriginallyIn: "This message has been written in %{language}",
+        translateButton: "translate",
         translateAllMessagesIn: "Translate all messages posted in %{language}.",
         untranslateAllMessagesIn: "I don't want to translate all messages in %{language}.",
         translateOnlyThisMessage: "Translate only this message.",

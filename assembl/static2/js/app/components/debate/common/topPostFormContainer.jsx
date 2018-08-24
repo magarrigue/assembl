@@ -104,23 +104,14 @@ class TopPostFormContainer extends React.Component<TopPostFormContainerProps, To
                         <Col
                           xs={12}
                           sm={messageColumns.length > 1 ? 10 : 3}
-                          md={messageColumns.length > 1 ? 10 : 2}
+                          md={1}
                           smOffset={messageColumns.length > 1 ? 1 : 1}
                           mdOffset={messageColumns.length > 1 ? 1 : 2}
                           className="no-padding"
                         >
                           <div className="start-discussion-container">
                             <div className="start-discussion-icon">
-                              <span className="assembl-icon-discussion color" />
-                            </div>
-                            <div
-                              className={
-                                messageColumns.length > 1 ? 'start-discussion start-discussion-multicol' : 'start-discussion'
-                              }
-                            >
-                              <h3 className="dark-title-3 no-margin">
-                                {messageColumns.length > 1 ? column.name : <Translate value="debate.thread.startDiscussion" />}
-                              </h3>
+                              <span style={{ fontSize: '40px' }} className="assembl-icon-discussion color" />
                             </div>
                           </div>
                         </Col>

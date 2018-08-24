@@ -217,6 +217,7 @@ class Child extends React.PureComponent {
                 listRef={listRef}
                 cache={cache}
                 identifier={identifier}
+                renderToggleLink={this.renderToggleLink}
               />
             );
           })

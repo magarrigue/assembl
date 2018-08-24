@@ -131,13 +131,15 @@ class PostTranslate extends React.Component<PostTranslateProps, PostTranslateSta
             />
           </p>
         ) : null}
-        <SwitchButton
+        <span
+          className="translate-button"
           ref={this.props.afterLoad}
           name={`switch-${id}`}
-          onChange={this.handleSubmit}
+          onClick={this.handleSubmit}
           checked={translate}
-          labelRight={I18n.t('debate.thread.translate')}
-        />
+        >
+          <Translate value="debate.thread.translateButton" />
+        </span>
       </div>
     );
   }

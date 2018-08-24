@@ -132,7 +132,7 @@
 
 $deleted-post-border: 1px solid $grey1 !default;
 
-.idea .level .deleted-post .box {
+.idea .x .deleted-post .box {
   border-left: $deleted-post-border;
 }
 
@@ -149,6 +149,10 @@ $deleted-post-border: 1px solid $grey1 !default;
     height: 300px;
   }
 
+  .attachment-image {
+    padding: 10px 0 0 0;
+  }
+
   @media screen and (max-width: 500px) {
     .embedded-video {
       height: 250px;
@@ -159,6 +163,13 @@ $deleted-post-border: 1px solid $grey1 !default;
     .embedded-video {
       height: 180px;
     }
+  }
+
+  .post-body-title {
+    font-family: $font-family;
+    font-size: 17px;
+    margin-top: 0;
+    line-height: 24px;
   }
 
   .post-row {
@@ -174,7 +185,6 @@ $deleted-post-border: 1px solid $grey1 !default;
     width: 7%;
     position: relative;
     text-align: center;
-    background-color: $first-color-light;
     min-width: 40px;
 
     .answers {
@@ -187,7 +197,12 @@ $deleted-post-border: 1px solid $grey1 !default;
   }
 
   .translate {
-    padding: 20px 0 0;
+
+    .translate-button {
+      cursor: pointer;
+      padding: 0 5px 10px 0;
+      text-transform: uppercase;
+    }
   }
 
   .box {
@@ -196,7 +211,7 @@ $deleted-post-border: 1px solid $grey1 !default;
     border-right: $navbar-border;
     border-top: $navbar-border;
     margin: 0 auto;
-    max-width: 600px;
+    max-width: 700px;
     position: relative;
     text-align: left;
     padding: 0;
@@ -215,20 +230,20 @@ $deleted-post-border: 1px solid $grey1 !default;
     }
 
     .creator {
-      color: $second-color;
-      padding: 0 0 0 10px;
+      color: $black;
+      padding: 5px 0 0 10px;
     }
 
     .date {
-      color: $grey2;
+      color: $black;
       font-size: $font-size-xs;
-      padding: 0 0 0 10px;
+      padding: 7px 0 0 10px;
       font-family: $font-family4;
     }
   }
 
   .body {
-    padding: 20px 0 40px;
+    padding: 10px 0 20px;
 
     p {
       margin: 0;
@@ -334,9 +349,11 @@ $deleted-post-border: 1px solid $grey1 !default;
   }
 
   .collapsed-answer-form {
-    background-color: $first-color-light;
     border-top: 2px solid $white;
-    padding: 0 20px;
+
+    .rich-text-editor {
+      margin-top: 0;
+    }
 
     .editor-header {
       display: none;
@@ -352,6 +369,14 @@ $deleted-post-border: 1px solid $grey1 !default;
 
     .annotation {
       display: none;
+      padding: 10px 0 0 5px;
+      margin-top: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 5px;
+      border: $first-color solid 2px;
+      border-radius: 5px;
     }
   }
 
