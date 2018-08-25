@@ -24,9 +24,9 @@ function loadStories() {
   require('../js/app/integration/101/components/checkbox101/checkbox101.stories.jsx');
   require('../js/app/integration/101/components/checkboxList101/checkboxList101.stories.jsx');
 
-  require('../js/app/stories/components/debate/brightMirror/circleAvatar.jsx');
-  require('../js/app/stories/components/debate/brightMirror/fictionHeader.jsx');
-  require('../js/app/stories/components/debate/brightMirror/fictionBody.jsx');
+  require('../js/app/stories/components/debate/brightMirror/circleAvatar.stories.jsx');
+  require('../js/app/stories/components/debate/brightMirror/fictionHeader.stories.jsx');
+  require('../js/app/stories/components/debate/brightMirror/fictionBody.stories.jsx');
 
   // TODO: To clean ?
   // require('../js/app/stories/components/common/common.jsx');
