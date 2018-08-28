@@ -38,7 +38,8 @@ import LandingPageAdmin from './pages/landingPageAdmin';
 import ExportTaxonomies from './pages/exportTaxonomies';
 import BrightMirror from './pages/brightMirror';
 import BrightMirrorAdmin from './pages/brightMirrorAdmin';
-import { routeForRouter } from './utils/routeMap';
+import { get, routeForRouter } from './utils/routeMap';
+import { browserHistory } from './router';
 
 // Page that is only used to display converted mockups to static pages
 import IntMainPage from './integration/index';
@@ -47,22 +48,41 @@ import Int101FormBuilderPage from './integration/101/containers/formBuilder101/f
 import IntBrightMirrorIndex from './integration/brightMirror/index';
 import IntBrightMirrorShow from './integration/brightMirror/show';
 
-const DebateHome = (props) => {
-  switch (props.params.phase) {
-  case 'survey':
-    return <Debate {...props} />;
-  case 'thread':
-    return <DebateThread {...props} />;
-  case 'multiColumns':
-    return <DebateThread {...props} />;
-  case 'voteSession':
-    return <VoteSession {...props} />;
-  case 'brightMirror':
-    return <BrightMirror {...props} />;
-  default:
-    return <Debate {...props} />;
+class DebateHome extends React.Component {
+  componentDidUpdate() {
+    const { identifier, phaseId, params, location } = this.props;
+    // identifier and phaseId props come from Main component with React.cloneElement of children
+    if (!params.phaseId) {
+      // keep old shared urls working
+      const oldBase = get('debateWithoutPhaseId', { slug: params.slug, phase: identifier });
+      const newBase = get('debate', { slug: params.slug, phase: identifier, phaseId: phaseId });
+      const newPathname = location.pathname.replace(oldBase, newBase);
+      browserHistory.push(newPathname + location.hash);
+    }
   }
-};
+
+  render() {
+    const props = this.props;
+    if (!props.params.phaseId) {
+      // debateWithoutPhaseId route, will be redirected
+      return null;
+    }
+    switch (props.params.phase) {
+    case 'survey':
+      return <Debate {...props} />;
+    case 'thread':
+      return <DebateThread {...props} />;
+    case 'multiColumns':
+      return <DebateThread {...props} />;
+    case 'voteSession':
+      return <VoteSession {...props} />;
+    case 'brightMirror':
+      return <BrightMirror {...props} />;
+    default:
+      return <Debate {...props} />;
+    }
+  }
+}
 
 const DebateChild = (props) => {
   switch (props.params.phase) {
@@ -147,6 +167,13 @@ export default [
         <Route path={routeForRouter('terms')} component={TermsAndConditions} />
         <Route path={routeForRouter('community')} component={Community} />
         <Route path={routeForRouter('rootDebate')} />
+        <Route path={routeForRouter('debateWithoutPhaseId', false, { phase: ':phase' })} component={DebateHome}>
+          <Route path={routeForRouter('theme', false, { themeId: ':themeId' })} component={DebateChild} />
+          <Route
+            path={routeForRouter('question', false, { questionId: ':questionId', questionIndex: ':questionIndex' })}
+            component={Question}
+          />
+        </Route>
         <Route path={routeForRouter('debate', false, { phase: ':phase', phaseId: ':phaseId' })} component={DebateHome}>
           <Route path={routeForRouter('theme', false, { themeId: ':themeId' })} component={DebateChild} />
           <Route
