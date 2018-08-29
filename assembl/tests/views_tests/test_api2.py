@@ -27,6 +27,88 @@ def test_extract_taxonomy_csv(test_session, test_app, discussion, extract_post_1
     taxonomy_csv = test_app.get('/data/Discussion/%d/extract_csv_taxonomy' % (discussion.id))
     assert taxonomy_csv.status_code == 200
 
+class TestTaxonomyExport(object):
+
+    THEMATIC = 0
+    MESSAGE = 1
+    CONTENT_HARVESTED = 2
+    CONTENT_LOCALE = 3
+    ORIGINAL_MESSAGE = 4
+    ORIGINAL_LOCALE = 5
+    QUALIFY_BY_NATURE = 6
+    QUALIFY_BY_ACTION = 7
+    OWNER_OF_THE_MESSAGE = 8
+    PUBLISHED_ON = 9
+    HARVESTER = 10
+    HARVESTED_ON = 11
+    NUGGET = 12
+    STATE = 13
+
+    def _get(self, app, discussion_id, lang=None):
+        base_req = '/data/Discussion/%d/extract_csv_taxonomy' % (discussion_id)
+        req = base_req
+        if lang:
+            req = base_req + '?lang=%s' % lang
+        return app.get(req)
+
+    def get_result(self, *args, **kwargs):
+        resp = self._get(*args, **kwargs)
+        csv_file = BytesIO()
+        csv_file.write(resp.app_iter[0])
+        csv_file.seek(0)
+        assert resp.status_code == 200
+        result = csv.reader(csv_file, dialect='excel', delimiter=';')
+        return list(result)
+
+    def test_base(self, test_session, test_app, discussion, extract_post_1_to_subidea_1_1, extract_with_range_in_reply_post_1, test_webrequest):
+        result = self.get_result(test_app, discussion.id)
+        header = result[0]
+        assert header[self.THEMATIC] == "Thematic"
+        assert header[self.MESSAGE] == "Message"
+        assert header[self.CONTENT_HARVESTED] == "Content Harvested"
+        assert header[self.CONTENT_LOCALE] == "Content Locale"
+        assert header[self.ORIGINAL_MESSAGE] == "Original Message"
+        assert header[self.ORIGINAL_LOCALE] == "Original Locale"
+        assert header[self.QUALIFY_BY_NATURE] == "Qualify By Nature"
+        assert header[self.QUALIFY_BY_ACTION] == "Qualify By Action"
+        assert header[self.OWNER_OF_THE_MESSAGE] == "Owner Of The Message"
+        assert header[self.PUBLISHED_ON] == "Published On"
+        assert header[self.HARVESTER] == "Harvester"
+        assert header[self.HARVESTED_ON] == "Harvested On"
+        assert header[self.NUGGET] == "Nugget"
+        assert header[self.STATE] == "State"
+
+        # first_row = result[1]
+        # assert first_row[self.THEMATIC] == ""
+        # assert first_row[self.MESSAGE] == ""
+        # assert first_row[self.CONTENT_HARVESTED] == ""
+        # assert first_row[self.CONTENT_LOCALE] == ""
+        # assert first_row[self.ORIGINAL_MESSAGE] == ""
+        # assert first_row[self.ORIGINAL_LOCALE] == ""
+        # assert first_row[self.QUALIFY_BY_NATURE] == ""
+        # assert first_row[self.QUALIFY_BY_ACTION] == ""
+        # assert first_row[self.OWNER_OF_THE_MESSAGE] == ""
+        # assert first_row[self.PUBLISHED_ON] == ""
+        # assert first_row[self.HARVESTER] == ""
+        # assert first_row[self.HARVESTED_ON] == ""
+        # assert first_row[self.NUGGET] == ""
+        # assert first_row[self.STATE] == ""
+
+        # last_row = result[-1]
+        # assert last_row[self.THEMATIC] == ""
+        # assert last_row[self.MESSAGE] == ""
+        # assert last_row[self.CONTENT_HARVESTED] == ""
+        # assert last_row[self.CONTENT_LOCALE] == ""
+        # assert last_row[self.ORIGINAL_MESSAGE] == ""
+        # assert last_row[self.ORIGINAL_LOCALE] == ""
+        # assert last_row[self.QUALIFY_BY_NATURE] == ""
+        # assert last_row[self.QUALIFY_BY_ACTION] == ""
+        # assert last_row[self.OWNER_OF_THE_MESSAGE] == ""
+        # assert last_row[self.PUBLISHED_ON] == ""
+        # assert last_row[self.HARVESTER] == ""
+        # assert last_row[self.HARVESTED_ON] == ""
+        # assert last_row[self.NUGGET] == ""
+        # assert last_row[self.STATE] == ""
 
 def local_to_absolute(uri):
     if uri.startswith('local:'):
