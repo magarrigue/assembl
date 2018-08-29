@@ -13,6 +13,18 @@ export type PublicationStates =
   | 'SUBMITTED_IN_EDIT_GRACE_PERIOD'
   | 'WIDGET_SCOPED';
 
+export type CookieTypes =
+  | 'ACCEPT_CGU'
+  | 'ACCEPT_LOCALE'
+  | 'ACCEPT_PRIVACY_POLICY_ON_DISCUSSION'
+  | 'ACCEPT_SESSION_ON_DISCUSSION'
+  | 'ACCEPT_TRACKING_ON_DISCUSSION'
+  | 'REJECT_CGU'
+  | 'REJECT_LOCALE'
+  | 'REJECT_PRIVACY_POLICY_ON_DISCUSSION'
+  | 'REJECT_SESSION_ON_DISCUSSION'
+  | 'REJECT_TRACKING_ON_DISCUSSION';
+
 export type ExtractStates = 'PUBLISHED' | 'SUBMITTED';
 
 export type SentimentTypes = 'DISAGREE' | 'DONT_UNDERSTAND' | 'LIKE' | 'MORE_INFO';
@@ -220,7 +232,7 @@ export type DiscussionPreferencesQuery = {|
   discussionPreferences: ?{|
     // The title in the tab.
     tabTitle: ?string,
-    // The favicon of the site.A file metadata object, described by the Document object.
+    // The site favicon.A file metadata object, described by the Document object.
     favicon: ?{|
       // The filename title.
       title: ?string,
@@ -1842,6 +1854,60 @@ export type ThematicQueryQuery = {|
     | {})
 |};
 
+export type ThematicsDataQueryQueryVariables = {|
+  identifier: string
+|};
+
+export type ThematicsDataQueryQuery = {|
+  // List of all ideas on the debate.
+  thematics: ?Array<?(
+    | {
+        // The order of the Idea, Thematic, Question in the idea tree.
+        order: ?number,
+        // The ID of the object.
+        id: string,
+        // The Relay.Node ID type of the Idea object.
+        parentId: ?string,
+        // A list of all immediate child Ideas on the Idea, exluding any hidden Ideas. The RootIdea will not be shown here, for example.
+        // The subchildren of each subIdea is not shown here.
+        children: ?Array<?{|
+          // The order of the Idea, Thematic, Question in the idea tree.
+          order: ?number,
+          // The ID of the object.
+          id: string,
+          // A list of all immediate child Ideas on the Idea, exluding any hidden Ideas. The RootIdea will not be shown here, for example.
+          // The subchildren of each subIdea is not shown here.
+          children: ?Array<?{|
+            // The order of the Idea, Thematic, Question in the idea tree.
+            order: ?number,
+            // The ID of the object.
+            id: string,
+            // A list of all immediate child Ideas on the Idea, exluding any hidden Ideas. The RootIdea will not be shown here, for example.
+            // The subchildren of each subIdea is not shown here.
+            children: ?Array<?{|
+              // The order of the Idea, Thematic, Question in the idea tree.
+              order: ?number,
+              // The ID of the object.
+              id: string
+            |}>
+          |}>
+        |}>
+      }
+    | {
+        // The order of the Idea, Thematic, Question in the idea tree.
+        order: ?number,
+        // The ID of the object.
+        id: string
+      })>,
+  // An idea union between either an Idea type or a Thematic type.
+  rootIdea: ?(
+    | {
+        // The ID of the object.
+        id: string
+      }
+    | {})
+|};
+
 export type ThematicsQueryQueryVariables = {|
   identifier: string
 |};
@@ -1873,6 +1939,8 @@ export type ThematicsQueryQuery = {|
         |},
         // The ID of the object.
         id: string,
+        // The Relay.Node ID type of the Idea object.
+        parentId: ?string,
         // A list of possible languages of the entity as LangStringEntry objects. This is the description of the Idea in multiple languages.
         descriptionEntries: ?Array<?{|
           // The ISO 639-1 locale code of the language the content represents.
@@ -1896,7 +1964,88 @@ export type ThematicsQueryQuery = {|
             // The unicode encoded string representation of the content.
             value: ?string
           |}>
-        |}
+        |},
+        // A list of all immediate child Ideas on the Idea, exluding any hidden Ideas. The RootIdea will not be shown here, for example.
+        // The subchildren of each subIdea is not shown here.
+        children: ?Array<?{|
+          // Use a non-standard view for this idea.
+          // Currently only supporting "messageColumns" and "brightMirror".
+          messageViewOverride: ?string,
+          // The order of the Idea, Thematic, Question in the idea tree.
+          order: ?number,
+          // A list of possible languages of the entity as LangStringEntry objects. This is the Idea title in multiple languages.
+          titleEntries: ?Array<?{|
+            // The ISO 639-1 locale code of the language the content represents.
+            localeCode: string,
+            // The unicode encoded string representation of the content.
+            value: ?string
+          |}>,
+          // Header image associated with the idea. A file metadata object, described by the Document object.
+          img: ?{|
+            // A url to an image or a document to be attached.
+            externalUrl: ?string,
+            // The MIME-Type of the file uploaded.
+            mimeType: ?string,
+            // The filename title.
+            title: ?string
+          |},
+          // The ID of the object.
+          id: string,
+          // A list of all immediate child Ideas on the Idea, exluding any hidden Ideas. The RootIdea will not be shown here, for example.
+          // The subchildren of each subIdea is not shown here.
+          children: ?Array<?{|
+            // Use a non-standard view for this idea.
+            // Currently only supporting "messageColumns" and "brightMirror".
+            messageViewOverride: ?string,
+            // The order of the Idea, Thematic, Question in the idea tree.
+            order: ?number,
+            // A list of possible languages of the entity as LangStringEntry objects. This is the Idea title in multiple languages.
+            titleEntries: ?Array<?{|
+              // The ISO 639-1 locale code of the language the content represents.
+              localeCode: string,
+              // The unicode encoded string representation of the content.
+              value: ?string
+            |}>,
+            // Header image associated with the idea. A file metadata object, described by the Document object.
+            img: ?{|
+              // A url to an image or a document to be attached.
+              externalUrl: ?string,
+              // The MIME-Type of the file uploaded.
+              mimeType: ?string,
+              // The filename title.
+              title: ?string
+            |},
+            // The ID of the object.
+            id: string,
+            // A list of all immediate child Ideas on the Idea, exluding any hidden Ideas. The RootIdea will not be shown here, for example.
+            // The subchildren of each subIdea is not shown here.
+            children: ?Array<?{|
+              // Use a non-standard view for this idea.
+              // Currently only supporting "messageColumns" and "brightMirror".
+              messageViewOverride: ?string,
+              // The order of the Idea, Thematic, Question in the idea tree.
+              order: ?number,
+              // A list of possible languages of the entity as LangStringEntry objects. This is the Idea title in multiple languages.
+              titleEntries: ?Array<?{|
+                // The ISO 639-1 locale code of the language the content represents.
+                localeCode: string,
+                // The unicode encoded string representation of the content.
+                value: ?string
+              |}>,
+              // Header image associated with the idea. A file metadata object, described by the Document object.
+              img: ?{|
+                // A url to an image or a document to be attached.
+                externalUrl: ?string,
+                // The MIME-Type of the file uploaded.
+                mimeType: ?string,
+                // The filename title.
+                title: ?string
+              |},
+              // The ID of the object.
+              id: string
+            |}>
+          |}>
+        |}>
       }
     | {
         // Use a non-standard view for this idea.
@@ -1976,7 +2125,14 @@ export type ThematicsQueryQuery = {|
             value: ?string
           |}>
         |}>
-      })>
+      })>,
+  // An idea union between either an Idea type or a Thematic type.
+  rootIdea: ?(
+    | {
+        // The ID of the object.
+        id: string
+      }
+    | {})
 |};
 
 export type TimelineQueryVariables = {|
@@ -2514,6 +2670,45 @@ export type VoteSessionQuery = {|
           voteType: ?string
         })>
   |}
+|};
+
+export type AcceptedCookiesQueryVariables = {|
+  id: string
+|};
+
+export type AcceptedCookiesQuery = {|
+  // The ID of the object
+  user: ?(
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {
+        // The list of cookies accepted by the agent.
+        acceptedCookies: ?Array<?CookieTypes>
+      }
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {}
+    | {})
 |};
 
 export type addGaugeVoteMutationVariables = {|
@@ -3877,7 +4072,7 @@ export type DeleteUserInformationMutationVariables = {|
 export type DeleteUserInformationMutation = {|
   // A mutation allowing a user to delete all his information according to article 17 of GDPR.
   // All vital information regarding the User acrosst the database is cleansed.
-  DeleteUserInformation: ?{|
+  deleteUserInformation: ?{|
     user: ?{|
       // The ID of the object.
       id: string
@@ -3893,6 +4088,20 @@ export type deleteVoteSpecificationMutation = {|
   // A mutation enabling an existing VoteSpecification to be deleted.
   deleteVoteSpecification: ?{|
     success: ?boolean
+  |}
+|};
+
+export type updateAcceptedCookiesMutationVariables = {|
+  actions: Array<?CookieTypes>
+|};
+
+export type updateAcceptedCookiesMutation = {|
+  // A mutation that allows the addition of accepted and rejected list of cookies by a registered user.
+  updateAcceptedCookies: ?{|
+    user: ?{|
+      // The list of cookies accepted by the agent.
+      acceptedCookies: ?Array<?CookieTypes>
+    |}
   |}
 |};
 
@@ -5661,6 +5870,54 @@ export type IdeaContentLinkFragment = {|
     messageViewOverride: ?string
   |}
 |};
+
+export type ideaDataFragment =
+  | {
+      // Use a non-standard view for this idea.
+      // Currently only supporting "messageColumns" and "brightMirror".
+      messageViewOverride: ?string,
+      // The order of the Idea, Thematic, Question in the idea tree.
+      order: ?number,
+      // A list of possible languages of the entity as LangStringEntry objects. This is the Idea title in multiple languages.
+      titleEntries: ?Array<?{|
+        // The ISO 639-1 locale code of the language the content represents.
+        localeCode: string,
+        // The unicode encoded string representation of the content.
+        value: ?string
+      |}>,
+      // Header image associated with the idea. A file metadata object, described by the Document object.
+      img: ?{|
+        // A url to an image or a document to be attached.
+        externalUrl: ?string,
+        // The MIME-Type of the file uploaded.
+        mimeType: ?string,
+        // The filename title.
+        title: ?string
+      |}
+    }
+  | {
+      // Use a non-standard view for this idea.
+      // Currently only supporting "messageColumns" and "brightMirror".
+      messageViewOverride: ?string,
+      // The order of the Idea, Thematic, Question in the idea tree.
+      order: ?number,
+      // A list of possible languages of the entity as LangStringEntry objects. This is the Idea title in multiple languages.
+      titleEntries: ?Array<?{|
+        // The ISO 639-1 locale code of the language the content represents.
+        localeCode: string,
+        // The unicode encoded string representation of the content.
+        value: ?string
+      |}>,
+      // Header image associated with the idea. A file metadata object, described by the Document object.
+      img: ?{|
+        // A url to an image or a document to be attached.
+        externalUrl: ?string,
+        // The MIME-Type of the file uploaded.
+        mimeType: ?string,
+        // The filename title.
+        title: ?string
+      |}
+    };
 
 export type IdeaMessageColumnFragment = {|
   // A CSS color that will be used to theme the column.
