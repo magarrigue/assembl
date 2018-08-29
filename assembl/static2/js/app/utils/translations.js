@@ -840,7 +840,8 @@ const Translations = {
     },
     date: {
       format: "D MMMM YYYY",
-      format2: "DD-MM-YYYY"
+      format2: "DD-MM-YYYY",
+      format3: "DD/MM/YYYY"
     },
     duration: {
       format: "h [h]"
@@ -1673,7 +1674,8 @@ const Translations = {
     },
     date: {
       format: "MMMM Do, YYYY",
-      format2: "YYYY-MM-DD"
+      format2: "YYYY-MM-DD",
+      format3: "MM/DD/YYYY"
     },
     duration: {
       format: "h [h]"
