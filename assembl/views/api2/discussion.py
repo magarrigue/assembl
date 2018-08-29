@@ -539,7 +539,7 @@ def extract_taxonomy_csv(request):
         if query:
             if query.body:
                 original_message = query.body.first_original().value
-                original_locale = query.body.first_original().locale.code or "no original locale"
+                original_locale = query.body.first_original().locale.code
                 message = query.body.best_lang(user_prefs).value
             else:
                 message = "no message"
