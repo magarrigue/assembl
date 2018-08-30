@@ -20,7 +20,7 @@ type VideoValue = {
   descriptionTop: I18nValue
 };
 
-type ThemeValue = {
+export type ThemeValue = {
   id: string,
   img: FileValue,
   questions: Array<QuestionValue>,
