@@ -2,11 +2,10 @@
 import * as React from 'react';
 import { compose, graphql } from 'react-apollo';
 import { connect } from 'react-redux';
-import { Translate, I18n } from 'react-redux-i18n';
+import { Translate } from 'react-redux-i18n';
 
 import { updateContentLocaleById, updateContentLocaleByOriginalLocale } from '../../../../actions/contentLocaleActions';
 import LocalesQuery from '../../../../graphql/LocalesQuery.graphql';
-import SwitchButton from '../../../common/switchButton';
 import withoutLoadingIndicator from '../../../common/withoutLoadingIndicator';
 import { getConnectedUserId } from '../../../../utils/globalFunctions';
 import { displayCustomModal } from '../../../../utils/utilityManager';
@@ -138,7 +137,7 @@ class PostTranslate extends React.Component<PostTranslateProps, PostTranslateSta
           onClick={this.handleSubmit}
           checked={translate}
         >
-          <Translate value="debate.thread.translateButton" />
+          <Translate value="debate.thread.translate" />
         </span>
       </div>
     );

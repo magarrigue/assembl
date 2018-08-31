@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { Translate } from 'react-redux-i18n';
 import classNames from 'classnames';
 import TopPostForm from './topPostForm';
 import { hexToRgb } from '../../../utils/globalFunctions';
@@ -104,7 +103,7 @@ class TopPostFormContainer extends React.Component<TopPostFormContainerProps, To
                         <Col
                           xs={12}
                           sm={messageColumns.length > 1 ? 10 : 3}
-                          md={1}
+                          md={messageColumns.length > 1 ? 10 : 2}
                           smOffset={messageColumns.length > 1 ? 1 : 1}
                           mdOffset={messageColumns.length > 1 ? 1 : 2}
                           className="no-padding"
