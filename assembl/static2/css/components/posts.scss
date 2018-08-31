@@ -137,6 +137,8 @@ $deleted-post-border: 1px solid $grey1 !default;
 }
 
 .posts {
+  margin-top: -1px;
+
   &.deleted-post {
     .body {
       font-style: italic;
@@ -316,8 +318,8 @@ $deleted-post-border: 1px solid $grey1 !default;
   }
 
   .answer-form {
-    background-color: $first-color-light;
-    border-top: 2px solid $white;
+    border: 1px solid $grey1;
+    box-shadow: 3px 6px 4px 0 $grey1;
     padding: 40px;
 
     .assembl-icon-back-arrow {
@@ -331,6 +333,10 @@ $deleted-post-border: 1px solid $grey1 !default;
 
       .editor-label {
         padding-top: 16px;
+      }
+
+      .DraftEditor-root {
+        border: solid 2px $first-color;
       }
     }
 
