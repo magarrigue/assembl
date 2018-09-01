@@ -18,6 +18,7 @@ from .langstring import (
 from .utils import (
     abort_transaction_on_exception, update_attachment,
     get_attachment_with_purpose)
+from .idea import TagResult, SentimentAnalysisResult
 
 
 # Mostly fields related to the discussion title and landing page
@@ -43,6 +44,8 @@ class Discussion(SecureObjectType, SQLAlchemyObjectType):
     button_label_entries = graphene.List(LangStringEntry, description=docs.Default.langstring_entries)
     header_image = graphene.Field(Document, description=docs.Discussion.header_image)
     logo_image = graphene.Field(Document, description=docs.Discussion.logo_image)
+    top_keywords = graphene.List(TagResult, description=docs.Discussion.top_keywords)
+    nlp_sentiment = graphene.Field(SentimentAnalysisResult, description=docs.Discussion.nlp_sentiment)
     slug = graphene.String(description=docs.Discussion.slug)
 
     def resolve_homepage_url(self, args, context, info):
@@ -107,6 +110,14 @@ class Discussion(SecureObjectType, SQLAlchemyObjectType):
         for attachment in discussion.attachments:
             if attachment.attachmentPurpose == LANDING_PAGE_LOGO_IMAGE:
                 return attachment.document
+
+    def resolve_top_keywords(self, args, context, info):
+        result = self.top_keywords()
+        return [TagResult(score=r.score, value=r.value) for r in result]
+
+    def resolve_nlp_sentiment(self, args, context, info):
+        result = self.sentiments()
+        return SentimentAnalysisResult(**result._asdict())
 
 
 class UpdateDiscussion(graphene.Mutation):
