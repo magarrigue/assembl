@@ -3,6 +3,7 @@ import sortBy from 'lodash/sortBy';
 import type { ApolloClient } from 'react-apollo';
 
 import ThematicsQuery from '../../../graphql/ThematicsQuery.graphql';
+import ThematicsDataQuery from '../../../graphql/ThematicsDataQuery.graphql';
 import { convertEntries } from '../../form/utils';
 import type { FileValue } from '../../form/types.flow';
 import { convertEntriesToRawContentState } from '../../../utils/draftjs';
@@ -10,7 +11,12 @@ import { PHASES } from '../../../constants';
 import type { MediaValue, SurveyAdminValues, ThemeValue } from './types.flow';
 import { getTree } from '../../../utils/tree';
 
-export const load = async (client: ApolloClient, fetchPolicy: FetchPolicy) => {
+export const load = async (client: ApolloClient, fetchPolicy: FetchPolicy, locale: string) => {
+  // Prefetch the ThematicsDataQuery for the admin menu
+  client.query({
+    query: ThematicsDataQuery,
+    variables: { identifier: PHASES.survey, lang: locale }
+  });
   const { data } = await client.query({
     query: ThematicsQuery,
     variables: { identifier: PHASES.survey },
