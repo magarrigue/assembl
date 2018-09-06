@@ -1093,6 +1093,21 @@ def app_compile_nodbupdate():
 
 
 @task
+def setup_nginx_file():
+    """Creates nginx config file from template."""
+    sudo("sudo cp %s/doc/sample_nginx_config/assembl.yourdomain.com /etc/nginx/sites-available/assembl.%s" % (env._projectpath, env.public_hostname))
+    sudo("sudo ln -s /etc/nginx/sites-available/assembl.%s /etc/nginx/sites-enabled/" % env.public_hostname)
+    sudo("sudo /etc/init.d/nginx restart")
+
+
+@task
+def setup_assembl_service():
+    sudo("sudo cp %s/doc/sample_systemd_script/assembl.service /etc/systemd/system/assembl.service" % env.public_hostname)
+    sudo("sudo systemctl enable assembl")
+    sudo("sudo systemctl assembl restart")
+
+
+@task
 def webservers_reload():
     """
     Reload the webserver stack.
