@@ -34,11 +34,11 @@ class ProfileIcon extends React.Component {
   }
 
   render() {
-    const { slug, connectedUserId, displayName, showUsername } = this.props;
+    const { slug, connectedUserId } = this.props;
     const dropdownUser = (
       <div className="inline">
         <span className="assembl-icon-profil grey" />
-        {showUsername && <span className="username">{displayName}</span>}
+        <span className="user-account"><Translate value="profile.panelTitle" /></span>
       </div>
     );
     return (
@@ -58,7 +58,7 @@ class ProfileIcon extends React.Component {
                   browserHistory.push(get('profile', { slug: slug, userId: connectedUserId }));
                 }}
               >
-                <Translate value="navbar.profile" />
+                <Translate value="profile.panelTitle" />
               </MenuItem>
               <MenuItem href={`${getContextual('oldLogout', { slug: slug })}?next=${get('home', { slug: slug })}`}>
                 <Translate value="navbar.logout" />

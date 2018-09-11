@@ -154,7 +154,6 @@ const Translations = {
       resourcesCenter: "Ressources",
       community: "communauté",
       connection: "Connexion",
-      profile: "Mon profil",
       logout: "Se déconnecter",
       administration: "Administration",
       syntheses: "Synthèses"
@@ -401,7 +400,7 @@ const Translations = {
       }
     },
     profile: {
-      panelTitle: "Votre compte",
+      panelTitle: "Mon compte",
       personalInfos: "Informations personnelles",
       userName: "Nom d'utilisateur",
       fullname: "Nom complet",
@@ -956,7 +955,6 @@ const Translations = {
       community: "community",
       resourcesCenter: "Resources",
       connection: "Login",
-      profile: "My profile",
       logout: "Logout",
       administration: "Administration",
       syntheses: "Syntheses"
@@ -1202,7 +1200,7 @@ const Translations = {
       }
     },
     profile: {
-      panelTitle: "Your account",
+      panelTitle: "My account",
       personalInfos: "Personal information",
       userName: "User name",
       fullname: "Full name",
